@@ -1,0 +1,102 @@
+/* A single, compact form panel: keep every field and the full consent visible. */
+.quote-section.section, .standalone-quote.section, .contact-section.section {
+  padding-block: 24px;
+  /* The root already reserves 110px for the sticky header. */
+  scroll-margin-top: -20px;
+  background: #edf5f6;
+}
+.quote-layout.container, .home-page .quote-layout.container {
+  width: min(1240px, calc(100% - 48px));
+  display: grid;
+  grid-template-columns: minmax(260px, .8fr) minmax(0, 1.5fr);
+  gap: 0;
+  align-items: stretch;
+  border: 1px solid #dbe8e9;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 18px 55px #183b400b;
+  overflow: hidden;
+}
+.quote-layout > .quote-intro, .quote-layout > .quote-page-intro, .quote-layout > .contact-copy {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: radial-gradient(ellipse at top left, #34879a55, transparent 65%), linear-gradient(150deg, #216b75, #234d6f);
+  color: white;
+}
+.quote-layout .eyebrow { color: #d5e9ec; font-size: 9px; letter-spacing: 1.4px; margin-bottom: 18px; }
+.quote-layout .eyebrow::before { background: #dfba50; }
+.quote-layout .quote-intro h2, .quote-layout .quote-page-intro h1, .quote-layout .contact-copy h2 {
+  font-family: var(--display); font-size: clamp(29px, 2.7vw, 38px); font-weight: 500; line-height: 1.15; letter-spacing: -1.4px;
+}
+.quote-layout h1 em, .quote-layout .quote-intro h2 em, .quote-layout .contact-copy h2 em { color: #ffe082; }
+.quote-layout .quote-intro > p, .quote-layout .quote-page-intro > p, .quote-layout .contact-copy > p {
+  font-size: 13px; line-height: 1.7; color: #e0eef0; margin: 18px 0 0; max-width: none;
+}
+.quote-layout .quote-benefits { margin-top: 20px; gap: 14px; }
+.quote-layout .quote-benefits > div { gap: 11px; }
+.quote-layout .quote-benefits > div > span { width: 25px; flex-shrink: 0; color: #ffe082; }
+.quote-layout .quote-benefits h3 { font-size: 14px; margin-bottom: 4px; }
+.quote-layout .quote-benefits p { font-size: 12px; line-height: 1.65; color: #d6e6e9; }
+.quote-layout .quote-help { margin-top: 18px; padding: 14px 0 0; border-color: #ffffff30; }
+.quote-layout .quote-help p { color: #d6e6e9; font-size: 12px; }
+.quote-layout .quote-help a, .quote-layout .quote-help svg, .quote-layout .contact-copy > .text-link { color: #ffe082; }
+.quote-layout .quote-page-checks { margin-top: 22px; gap: 11px; }
+.quote-layout .quote-page-checks > span { font-size: 12px; }
+.quote-layout .quote-page-checks svg { color: #ffe082; }
+.quote-layout .quote-page-photo { height: 146px; margin-top: 24px; border-radius: 12px; }
+.quote-layout .quote-page-photo > span { font-size: 20px; left: 17px; bottom: 13px; }
+.quote-layout .contact-info { gap: 12px; margin: 20px 0 0; }
+.quote-layout .contact-info .icon-tile { background: #ffffff15; color: #ffe082; width: 35px; height: 35px; flex-shrink: 0; }
+.quote-layout .contact-info h3 { font-size: 14px; margin-bottom: 4px; }
+.quote-layout .contact-info p { font-size: 12px; line-height: 1.6; color: #d6e6e9; }
+.quote-layout .contact-copy > .text-link { margin-top: 22px; font-size: 12px; }
+.quote-layout .quote-card { border: 0; border-radius: 0; box-shadow: none; padding: 24px 30px; height: 100%; scroll-margin-top: 0; }
+.quote-card .form-kicker { font-size: 9px; letter-spacing: 1px; }
+.quote-card .form-kicker svg { width: 15px; height: 15px; }
+.quote-layout .quote-card h2 { font-family: var(--display); font-weight: 500; font-size: 23px; line-height: 1.2; margin-top: 8px; letter-spacing: -.7px; }
+.quote-card-top > p { font-size: 12px; line-height: 1.5; margin: 7px 0 16px; }
+.quote-card .form-grid { gap: 10px 16px; }
+.quote-card .field label { font-size: 12px; line-height: 1.4; margin-bottom: 4px; }
+.quote-card .field input, .quote-card .field select, .quote-card .field textarea { min-height: 40px; padding: 8px 11px; line-height: 1.5; font-size: 13px; border-radius: 7px; }
+.quote-card .select-wrap > svg { top: 12px; }
+.quote-card .field textarea { height: 54px; min-height: 54px; }
+.quote-card .consent { font-size: 11.5px; line-height: 1.5; margin-top: 12px; color: #53666a; }
+.quote-card .consent input { width: 16px; height: 16px; margin-top: 2px; }
+.quote-card .form-submit { margin-top: 14px; min-height: 42px; padding: 10px 18px; border-radius: 8px; }
+.quote-card .form-reassurance { font-size: 10px; line-height: 1.5; margin-top: 9px; }
+.quote-card .form-preview-note { font-size: 10px; line-height: 1.5; margin-top: 3px; }
+
+@media (min-width: 801px) and (max-height: 800px) {
+  .quote-section.section, .standalone-quote.section, .contact-section.section { padding-block: 16px; }
+  .quote-layout .quote-card { padding: 19px 26px; }
+  .quote-card-top > p { margin-bottom: 12px; }
+  .quote-card .form-grid { row-gap: 8px; }
+  .quote-card .consent { margin-top: 10px; }
+  .quote-card .form-submit { margin-top: 10px; }
+  .quote-layout > .quote-intro, .quote-layout > .quote-page-intro, .quote-layout > .contact-copy { padding: 26px; }
+  .quote-layout .quote-page-photo { height: 125px; margin-top: 18px; }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .quote-layout.container, .home-page .quote-layout.container { grid-template-columns: minmax(245px, .7fr) minmax(0, 1.5fr); }
+  .quote-layout > .quote-intro, .quote-layout > .quote-page-intro, .quote-layout > .contact-copy { padding: 24px; }
+  .quote-layout .quote-card { padding-inline: 22px; }
+}
+@media (max-width: 960px) {
+  .quote-section.section, .standalone-quote.section, .contact-section.section { scroll-margin-top: -34px; }
+}
+@media (max-width: 800px) {
+  .quote-layout.container, .home-page .quote-layout.container { width: calc(100% - 32px); grid-template-columns: 1fr; }
+  .quote-layout > .quote-intro, .quote-layout > .quote-page-intro, .quote-layout > .contact-copy { padding: 28px; }
+  .quote-layout .quote-intro h2, .quote-layout .quote-page-intro h1, .quote-layout .contact-copy h2 { font-size: 32px; }
+  .quote-layout .quote-card { padding: 24px; }
+  .quote-card .consent { font-size: 12px; line-height: 1.65; }
+  .quote-card .field input, .quote-card .field select, .quote-card .field textarea { font-size: 16px; min-height: 44px; }
+  .quote-card .field textarea { height: 70px; }
+  .quote-card .form-reassurance, .quote-card .form-preview-note { font-size: 11px; }
+}
+@media (max-width: 480px) {
+  .quote-layout .quote-card { padding: 22px 18px; }
+  .quote-card .form-grid { grid-template-columns: 1fr; gap: 12px; }
+}

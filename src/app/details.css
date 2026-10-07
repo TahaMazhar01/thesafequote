@@ -1,0 +1,75 @@
+/* Dimensional cards in the site teal, muted blue, and warm gold palette. */
+.sculpted-benefits { gap: 24px; }
+.sculpted-benefit.benefit-card {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; width: 100%; min-height: 360px;
+  padding: 25px; border: 1px solid #ffffff40; border-radius: 18px;
+  color: white; background: linear-gradient(150deg, #246f79 5%, #235e70 48%, #244d71);
+  box-shadow: 0 22px 32px -19px #183b4070, inset 0 1px 0 #ffffff35;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.sculpted-benefit::after { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 0 100%,#84c5be44,transparent 65%); pointer-events: none; }
+.sculpted-benefit .benefit-copy { position: relative; z-index: 2; }
+.sculpted-benefit h3 { color: white; font-family: var(--display); font-size: 24px; font-weight: 600; line-height: 1.08; letter-spacing: -.65px; margin: 0 0 14px; max-width: 245px; }
+.sculpted-benefit p { color: #e2eff0; font-size: 13px; line-height: 1.65; max-width: 290px; }
+.benefit-sculpture { position: absolute; z-index: 0; width: 285px; height: 214px; right: -18px; bottom: 27px; filter: drop-shadow(0 14px 12px #103e4945); transition: transform .65s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.sculpture-0 { width: 320px; right: -36px; bottom: 18px; }
+.sculpture-1 { bottom: 25px; right: -30px; }
+.benefit-action { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 175px; }
+.benefit-action > span:first-child { padding: 5px 11px; border-radius: 30px; background: #fbf7e9; color: #214f5a; font-size: 10px; font-weight: 700; line-height: 1.5; }
+.benefit-arrow { width: 30px; height: 30px; display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; background: #ffe082; color: #214f5a; transition: transform .25s ease; }
+.benefit-action:hover .benefit-arrow { transform: translateX(3px); }
+.sculpted-benefit:focus-within { outline: 3px solid #b58b25; outline-offset: 5px; }
+@media (hover: hover) {
+  .sculpted-benefit:hover { transform: translateY(-5px); box-shadow: 0 30px 40px -22px #183b4085, inset 0 1px 0 #ffffff35; }
+  .sculpted-benefit:hover .benefit-sculpture { transform: translate(-5px,-4px) rotate(4deg); }
+}
+
+/* Two independent circular photos, with overlap confined to their own column. */
+.contact-hero.page-hero { padding-bottom: 40px; background: linear-gradient(115deg,#fbfaf5 45%,#eef5f4); }
+.contact-hero .breadcrumb { margin-bottom: 24px; }
+.contact-hero-grid { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(0,.85fr); align-items: center; gap: clamp(32px,5vw,76px); }
+.contact-hero h1 { font-size: clamp(35px,3.4vw,49px); line-height: 1.16; letter-spacing: -1.7px; }
+.contact-hero p { font-size: 15px; line-height: 1.8; margin-top: 20px; max-width: 580px; }
+.contact-hero-copy > .text-link { margin-top: 24px; font-size: 13px; }
+.contact-hero-photo { margin: 0; padding: 12px 12px 0 0; }
+.contact-photo-orbits { position: relative; width: 100%; aspect-ratio: 1.09; isolation: isolate; }
+.contact-photo-orbits::before { content: ''; position: absolute; width: 92%; aspect-ratio: 1; top: -3%; right: -3%; border: 1px solid #7caaa64a; border-radius: 50%; }
+.contact-photo-orbits::after { content: ''; position: absolute; width: 48%; aspect-ratio: 1; bottom: -2%; left: -3%; border: 1px solid #c4a14e60; border-radius: 50%; z-index: -1; }
+.contact-orbit { position: absolute; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid white; box-shadow: 0 16px 30px -23px #173b4066; background: #e6efed; }
+.contact-orbit-main { width: 86%; top: 0; right: 0; }
+.contact-orbit-detail { width: 46%; bottom: 0; left: 0; z-index: 2; }
+.contact-orbit img { object-fit: cover; }
+.contact-orbit-main img { object-position: 64% 46%; }
+.contact-orbit-detail img { object-position: 43% 53%; }
+.contact-hero-photo figcaption { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 24px 0 0; }
+.contact-photo-heart { display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; background: #edf4ef; border-radius: 50%; color: var(--teal); }
+.contact-hero-photo strong { display: block; font-size: 13px; line-height: 1.45; font-weight: 700; }
+.contact-hero-photo small { display: block; font-size: 11px; color: #697d7d; margin-top: 3px; }
+@media (max-width: 1100px) {
+  .sculpted-benefits { gap: 18px; }
+  .sculpted-benefit.benefit-card { padding: 21px; }
+  .sculpted-benefit h3 { font-size: 22px; }
+  .benefit-sculpture { width: 255px; right: -35px; }
+  .contact-hero-grid { gap: 30px; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); }
+}
+@media (max-width: 960px) {
+  .sculpted-benefits { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 760px) {
+  .contact-hero-grid { grid-template-columns: 1fr; gap: 28px; }
+  .contact-hero-photo { width: 100%; max-width: 420px; margin-inline: auto; }
+  .contact-hero h1 { font-size: 37px; }
+  .contact-hero-photo figcaption { padding-top: 22px; }
+}
+@media (max-width: 520px) {
+  .sculpted-benefits { grid-template-columns: 1fr; gap: 22px; }
+  .sculpted-benefit.benefit-card { min-height: 350px; padding: 25px; }
+  .sculpted-benefit h3 { font-size: 25px; }
+  .benefit-sculpture { width: 285px; height: 190px; right: -10px; }
+  .benefit-action { padding-top: 175px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sculpted-benefit, .benefit-sculpture, .benefit-arrow { transition: none; }
+  .sculpted-benefit:hover, .sculpted-benefit:hover .benefit-sculpture { transform: none; }
+}

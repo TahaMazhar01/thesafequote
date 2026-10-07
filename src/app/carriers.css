@@ -1,0 +1,32 @@
+.carrier-section { padding: 39px 0 42px; background: #fff; border-top: 1px solid #e3ecee; }
+.carrier-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 27px; }
+.home-page .carrier-heading-row h2 { display: flex; align-items: center; gap: 11px; margin: 0; color: #547078; font-family: 'Manrope',sans-serif; font-size: 10px; font-weight: 700; line-height: 1.6; letter-spacing: 1.8px; text-transform: uppercase; }
+.carrier-heading-row h2 > span { width: 25px; height: 2px; background: #bb9333; }
+.carrier-window { overflow: hidden; padding: 4px 0; mask-image: linear-gradient(to right,transparent,#000 3%,#000 97%,transparent); }
+.carrier-window:focus-visible { outline-offset: 5px; }
+.carrier-track { display: flex; width: max-content; animation: carrier-scroll 42s linear infinite; }
+.carrier-window:hover .carrier-track, .carrier-window:focus-within .carrier-track { animation-play-state: paused; }
+.carrier-group { display: flex; align-items: center; gap: 32px; flex-shrink: 0; margin: 0; padding: 0 32px 0 0; list-style: none; }
+.carrier-item { width: 200px; flex-shrink: 0; }
+.carrier-logo { width: 200px; height: 76px; display: flex; align-items: center; justify-content: center; }
+.carrier-logo img { display: block; width: 180px; height: 66px; object-fit: contain; }
+@keyframes carrier-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 760px) {
+  .carrier-section { padding: 28px 0 30px; }
+  .carrier-heading-row { margin-bottom: 23px; gap: 12px; }
+  .home-page .carrier-heading-row h2 { font-size: 8px; letter-spacing: 1.1px; gap: 7px; }
+  .carrier-heading-row h2 > span { width: 15px; }
+  .carrier-group { gap: 24px; padding-right: 24px; }
+  .carrier-item { width: 170px; }
+  .carrier-logo { width: 170px; height: 64px; }
+  .carrier-logo img { width: 155px; height: 58px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carrier-track { animation: none; width: 100%; display: block; }
+  .carrier-window { mask-image: none; }
+  .carrier-group { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); padding: 0; gap: 26px 16px; }
+  .carrier-group[aria-hidden='true'] { display: none; }
+  .carrier-item { width: 100%; }
+  .carrier-logo { max-width: 100%; }
+  .carrier-logo img { max-width: 100%; }
+}
