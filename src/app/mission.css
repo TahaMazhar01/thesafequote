@@ -1,4 +1,4 @@
-.family-mission-section { padding: 90px 0 100px; overflow: clip; background: linear-gradient(105deg,#fff 44%,#f4f9fb 100%); }
+.family-mission-section { padding: 90px 0 100px; overflow: clip; background: var(--surface-gradient); }
 .family-mission-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
 .family-mission-copy { position: relative; z-index: 1; }
 .family-mission-copy .eyebrow { margin-bottom: 17px; }

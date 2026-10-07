@@ -121,3 +121,56 @@ Editorial sources checked October 8, 2026:
 - https://content.naic.org/consumer/health-insurance.htm
 
 Lint and TypeScript checks passed; production build compiled and generated all routes. Preview: preview-plans-medicare.jpg.
+
+## Relevant benefit artwork and polished footer (2026-10-08)
+
+Replaced the repeated abstract ribbon, gear, and rings with six original SVG illustrations: conversation bubbles, a budget wallet, a decision checklist, policy comparison cards, a protected family, and a calendar/clock. Artwork now occupies normal layout space beneath the copy, preventing overlap at desktop and mobile widths. Teal, cream, and gold colors remain consistent. Artwork is decorative and hidden from assistive technology; reduced motion is respected.
+
+Rebuilt the shared footer with a compact quote invitation, grouped coverage and company navigation, a conversation prompt, a separate disclosure panel, and wrapping legal links. Coverage links target the new Plans sections. No unverified contact details or social profiles were introduced.
+
+Verified desktop 1440px and mobile 390px layouts with no horizontal overflow or copy/art overlap. ESLint, TypeScript, and production build passed. Screenshots: preview-benefit-illustrations.jpg and preview-footer-polished.jpg.
+
+## Closing quote section redesign (2026-10-08)
+
+Replaced the gradient flower banner with a warm cream split layout: an arch-shaped family photograph on the left, teal headline and copy on the right, a rounded teal/gold quote button, secondary contact link, and a compact reassurance line. Reuses the existing enhanced generations image. The shared ClosingCta export applies the new design across pages. Mobile stacks the photo above the copy.
+
+Verified desktop 1440px and mobile 390px rendering without horizontal overflow. ESLint, TypeScript, and production build pass. Preview: preview-closing-cta-redesign.jpg.
+
+## Unique closing-section photo (2026-10-08)
+
+Replaced the reused generations photo with closing-family-moment.jpg, a newly sourced 1800 x 1200 Pexels photograph by Gustavo Fring showing grandparents with their granddaughter outdoors. The approved section design remains intact. Updated alternative text and focal positioning for the landscape image; license and source details are in ASSETS.md. Desktop/mobile image loading and layout checked. Preview: preview-closing-new-photo.jpg.
+
+## Shared 01-02-03 badges (2026-10-08)
+
+Introduced a reusable NumberBadge with teal dimensional background, warm gold label/accent, high-contrast tabular numerals, and Step/Option accessibility labels. Process sections use larger badges and a dotted connector to their icons. Medicare and supplemental cards use a compact version; final expense cards retain the number on both photo and revealed detail views. The hero counter is unchanged.
+
+Desktop process, health plan cards, and both final expense card states verified. Final expense details still fit their 470px panel. Mobile 390px has no horizontal overflow. ESLint, TypeScript, and production build pass. Previews: preview-step-numbering.jpg, preview-plan-numbering.jpg, preview-photo-plan-numbering.jpg.
+
+### 2026-10-08 — Shared homepage colour palette
+- Centralized the approved pale teal/blue hero gradient, dark teal-to-blue panels, button colours, borders and text tones in globals.css.
+- Applied the palette to page heroes, health and final-expense cards, contact/form panels, mission, closing CTA and footer; preserved gold accents, approved layouts, imagery and all form behavior.
+- Photo-card shade retains its existing opacity, gradient stops and blur, with its green tint shifted to deep teal-blue.
+- Verified desktop plans/contact/closing sections and mobile contact; shared hero/footer gradient confirmed in browser. ESLint and production build passed.
+- Preview: docs/preview-unified-theme.jpg and docs/preview-theme-contact.jpg.
+
+### 2026-10-08 — Medicare premium cards
+- Removed standalone Medicare Parts A & B card and its plans-page metadata mention. Kept Parts A/B context where needed to explain remaining coverage.
+- Balanced Medicare Advantage and Supplement in a two-column desktop layout (01/02), stacking on mobile. Supplemental cards remain a three-column grid.
+- Added prominent $0/month plan-premium panel qualified as some plans, with availability, continuing Part B premium and other-cost clarification. Added Monthly premium tag and variable-rate information to Supplement.
+- Cost wording checked against https://www.medicare.gov/basics/costs/medicare-costs and https://www.medicare.gov/basics/get-started-with-medicare/medicare-basics/how-does-medicare-work . No carrier-specific rate or availability is claimed.
+- Desktop and 390px mobile verified; lint and production build passed. Preview: docs/preview-medicare-premiums.jpg.
+
+### 2026-10-08 — Compact Medicare card redesign
+- Replaced oversized Medicare layout with a dedicated compact card: one-row title/icon/number header, slim dark teal-blue pricing strip, concise spacing and small circular-arrow CTA.
+- Centered the two-card grid at 1040px maximum; measured 509 x 489px per card at a 1440px desktop viewport. Preserved premium qualifications, coverage details and all supplemental-card layouts.
+- Checked desktop and 390px mobile previews. Lint and TypeScript passed. Preview: docs/preview-compact-medicare-cards.jpg.
+
+### 2026-10-08 — Remove Option labels and sun icons
+- Removed default visible Option text from number badges while keeping numbers centered and explicit Step labels. Removed inaccurate fixed of-3 accessibility text.
+- Removed sun artwork and its empty icon containers from Dental & Vision, Our vision, Guaranteed Issue photo badge and comparison header; removed Sun from icon registry.
+- Verified no sun references remain in src, zero sun SVGs/Option labels on plans, and preserved number placement. Lint and TypeScript passed. Preview: docs/preview-no-option-sun.jpg.
+
+### 2026-10-08 — FAQ hero image and layout
+- Added dedicated FAQ hero with left-hand text/actions and a new 2026 free-use consultation photo in a rounded frame on the right. Caption sits below the image without obscuring faces.
+- Uses the shared pale teal/blue theme; responsive single-column layout at mobile sizes. Added Browse questions anchor; existing FAQ search/filter/accordion unchanged.
+- Verified 1440px desktop and 390px mobile, image loading and FAQ jump link. TypeScript, lint and production build passed. Preview: docs/preview-faq-image-hero.jpg. Photo license recorded in ASSETS.md.

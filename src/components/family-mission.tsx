@@ -5,7 +5,7 @@ import { Icon } from "./icon";
 import { Reveal } from "./reveal";
 
 const principles = [
-  { icon: "sun", title: "Our vision", text: "A little more confidence for every family. Understand your options today, and plan for the people who matter most." },
+  { icon: "", title: "Our vision", text: "A little more confidence for every family. Understand your options today, and plan for the people who matter most." },
   { icon: "heart", title: "Our mission", text: "Make final expense planning feel more human, with clear explanations and guidance that starts with listening." },
   { icon: "shield", title: "Our promise", text: "Your needs. Your budget. Your pace. Explore the possibilities with no pressure and no obligation to enroll." },
 ];
@@ -22,7 +22,7 @@ export function FamilyMission() {
           <div className="mission-principles">
             {principles.map(principle => (
               <div className="mission-principle" key={principle.title}>
-                <span className="mission-icon"><Icon name={principle.icon} size={26} /></span>
+                {principle.icon && <span className="mission-icon"><Icon name={principle.icon} size={26} /></span>}
                 <div><h3>{principle.title}</h3><p>{principle.text}</p></div>
               </div>
             ))}

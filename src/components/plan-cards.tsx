@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { plans } from "@/lib/content";
 import { Icon } from "./icon";
+import { NumberBadge } from "./number-badge";
 
 const photos = [
   { src: "/images/family-generations-hd.png", alt: "Three generations of a family laughing together", caption: "Care that carries on.", position: "50% 32%" },
@@ -74,7 +75,7 @@ function PhotoPlan({ index }: { index: number }) {
   return (
     <article ref={card} className={`photo-plan ${open ? "is-open" : ""} ${index % 2 ? "slide-right" : "slide-left"}`} aria-label={plan.name} onFocusCapture={takeControl} onPointerDown={takeControl}>
       <div className="photo-plan-details" id={`${id}-details`} inert={!open} aria-hidden={!open}>
-        <div className="photo-plan-detail-top"><span className="detail-icon"><Icon name={plan.icon} size={25} /></span><button ref={backButton} type="button" onClick={() => toggle(false)} aria-label={`Show ${plan.name} photo`}>View photo <Icon name="close" size={15} /></button></div>
+        <div className="photo-plan-detail-top"><NumberBadge number={index + 1} compact /><button ref={backButton} type="button" onClick={() => toggle(false)} aria-label={`Show ${plan.name} photo`}>View photo <Icon name="close" size={15} /></button></div>
         <span className="photo-plan-eyebrow">{plan.tag}</span>
         <h3>{plan.name}</h3>
         <p>{plan.description}</p>
@@ -90,9 +91,9 @@ function PhotoPlan({ index }: { index: number }) {
       }} aria-label={`Show ${plan.name} details`} aria-expanded={open} aria-controls={`${id}-details`} aria-hidden={open} tabIndex={open ? -1 : 0} inert={open}>
         <Image src={photo.src} alt={photo.alt} fill quality={90} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1440px) 33vw, 440px" style={{ objectPosition: photo.position }} />
         <Image className="photo-plan-soft-focus" src={photo.src} alt="" aria-hidden="true" fill quality={90} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1440px) 33vw, 440px" style={{ objectPosition: photo.position }} />
-        <span className="photo-plan-badge"><Icon name={plan.icon} size={16} /> {index === 0 ? "From day one" : index === 1 ? "More possibilities" : "Another way forward"}</span>
+        <span className="photo-plan-badge">{plan.icon && <Icon name={plan.icon} size={16} />} {index === 0 ? "From day one" : index === 1 ? "More possibilities" : "Another way forward"}</span>
         <span className="photo-plan-glass">
-          <span className="photo-plan-number">0{index + 1} / PROTECTION, MADE PERSONAL</span>
+          <span className="photo-plan-number"><span>Protection, made personal</span></span>
           <span className="photo-plan-title">{plan.name}</span>
           <span className="photo-plan-caption">{photo.caption}</span>
           <span className="photo-plan-bottom"><span>Discover this plan</span><span className="photo-plan-arrow"><Icon name="arrow" size={21} /></span></span>

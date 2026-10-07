@@ -65,3 +65,26 @@ Two distinct, newly sourced photos now appear in the contact hero. Both are stor
 | `public/images/contact-holding-hands.jpg` | SHVETS production | https://www.pexels.com/photo/elderly-couple-holding-hands-7544922/ | April 17, 2021 | 1800 x 1200 | https://www.pexels.com/license/ |
 
 Downloaded from https://images.unsplash.com/photo-1761839257647-df30867afd54?auto=format&fit=max&fm=jpg&q=90&w=2000 and https://images.pexels.com/photos/7544922/pexels-photo-7544922.jpeg?auto=compress&cs=tinysrgb&w=1800 . Publication dates are source-page dates, not independently verified capture dates.
+
+## Benefit illustrations
+
+The six benefit illustrations in src/components/benefit-illustration.tsx are original code-native SVG artwork created for this project. They depict guidance, budgeting, making a decision, comparing policies, family protection, and scheduling. No external stock files are used for these cards.
+
+## New closing-section photograph — October 8, 2026
+
+- File: public/images/closing-family-moment.jpg (1800 x 1200).
+- Photographer: Gustavo Fring.
+- Source: https://www.pexels.com/photo/grandparents-having-fun-with-their-granddaughter-5163600/
+- Source publication: August 21, 2020; source reports capture date August 9, 2020.
+- License: https://www.pexels.com/license/ (free-use stock, not CC0 or an open-source license).
+- Download: https://images.pexels.com/photos/5163600/pexels-photo-5163600.jpeg?auto=compress&cs=tinysrgb&w=1800
+- Original source resolution: 5760 x 3840. The local 1800px version is served with Next.js image optimization at quality 90; framing uses CSS only.
+- Used only in the shared closing quote section. People are illustrative, not customers or endorsements.
+
+## FAQ hero photograph — October 8, 2026
+- Local: public/images/faq-guidance.jpg (1800 x 1013).
+- Photographer: Vitaly Gariev. Published March 25, 2026.
+- Source: https://www.pexels.com/photo/young-couple-meeting-financial-advisor-for-consultation-36729962/
+- Free-use Pexels license: https://www.pexels.com/license/ (not CC0 or open-source).
+- Download: https://images.pexels.com/photos/36729962/pexels-photo-36729962.jpeg?auto=compress&cs=tinysrgb&w=1800
+- Unmodified photo, cropped only in CSS and optimized by Next Image. Illustrative consultation, not a claim about actual staff or clients.
