@@ -12,7 +12,7 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   try {
     checkOrigin(request);
-    const admin = await requireAdmin(request.headers, false, "leads");
+    const admin = await requireAdmin(request.headers, "leads");
     await consumeLimit(`export:${admin.id}`, 5, 300);
     const body = z.object({ format: z.enum(["csv", "xlsx"]), search: z.string().max(254), status: z.string().max(20), archived: z.enum(["true", "false"]), deleted: z.enum(["true", "false"]), range: z.enum(["all", "today", "yesterday", "custom", "time"]), from: z.string().max(40), to: z.string().max(40) }).strict().parse(await readJson(request, 4096));
     const { where, values, timezone } = leadFilter(new URLSearchParams(body));

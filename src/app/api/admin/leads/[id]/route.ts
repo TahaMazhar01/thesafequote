@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 type Context = { params: Promise<{ id: string }> };
 export async function GET(request: Request, context: Context) {
   try {
-    await requireAdmin(request.headers, false, "leads");
+    await requireAdmin(request.headers, "leads");
     const id = z.uuid().parse((await context.params).id);
     const result = await getPool().query("SELECT l.*, v.fields FROM fa_leads l JOIN fa_form_versions v ON v.id = l.form_version WHERE l.id = $1", [id]);
     if (!result.rows[0]) throw new HttpError(404, "Lead not found.");
@@ -21,7 +21,7 @@ export async function GET(request: Request, context: Context) {
 export async function PATCH(request: Request, context: Context) {
   try {
     checkOrigin(request);
-    const admin = await requireAdmin(request.headers, false, "leads");
+    const admin = await requireAdmin(request.headers, "leads");
     const id = z.uuid().parse((await context.params).id);
     const body = z.union([
       z.object({ revision: z.number().int().positive(), status: z.enum(leadStatuses), notes: plainText(5000), archived: z.boolean(), answers: z.unknown() }).strict(),

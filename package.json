@@ -17,7 +17,7 @@
     "test:lead-actions": "node --env-file-if-exists=.env.local --import tsx --test tests/lead-actions.test.ts",
     "security:production-check": "node --env-file-if-exists=.env.local scripts/production-check.mjs",
     "security:maintenance": "node --env-file-if-exists=.env.local scripts/security-maintenance.mjs",
-    "prestart": "npm run security:production-check -- --allow-enrollment",
+    "prestart": "npm run security:production-check",
     "test:security": "node --env-file-if-exists=.env.local --import tsx tests/security-hardening.ts",
     "test:export": "node --import tsx --test tests/lead-export.test.ts",
     "verify:deployment": "node scripts/verify-deployment.mjs"

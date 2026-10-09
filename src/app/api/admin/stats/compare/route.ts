@@ -5,7 +5,7 @@ import { failure, json } from "@/lib/server/http";
 export const runtime = "nodejs";
 export async function GET(request: Request) {
   try {
-    await requireAdmin(request.headers, false, "leads");
+    await requireAdmin(request.headers, "leads");
     const params = new URL(request.url).searchParams;
     const period = z.enum(["week", "month"]).parse(params.get("period") || "week");
     const dates = z.array(z.iso.date().refine(value => value >= "1900-01-01" && value <= "2100-12-31")).min(2).max(3).parse(params.getAll("date"));

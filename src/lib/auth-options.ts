@@ -1,13 +1,11 @@
 import type { BetterAuthOptions } from "better-auth";
 import type { Pool } from "pg";
-import { twoFactor } from "better-auth/plugins";
 import { hashAdminPassword, verifyAdminPassword } from "./password";
 
 // Shared by the server and explicit local maintenance scripts only.
 export function authOptions(database: Pool, allowSignup = false): BetterAuthOptions {
   if (!process.env.BETTER_AUTH_SECRET || process.env.BETTER_AUTH_SECRET.length < 32) throw new Error("Authentication is not configured.");
   return {
-    plugins: [twoFactor({issuer:"The Safe Quote",accountLockout:{enabled:true,maxFailedAttempts:5,durationSeconds:900}})],
     databaseHooks: { session: { create: { before: async session => ({data:{...session,expiresAt:new Date(Date.now()+8*60*60*1000)}}) } } },
     appName: "TheSafeQuote Admin",
     baseURL: process.env.BETTER_AUTH_URL || "http://127.0.0.1:3000",

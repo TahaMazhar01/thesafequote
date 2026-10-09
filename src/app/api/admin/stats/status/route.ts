@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   try {
-    await requireAdmin(request.headers, false, "leads");
+    await requireAdmin(request.headers, "leads");
     const params = new URL(request.url).searchParams;
     const anchor = z.iso.date().refine(value => value >= "1900-01-01" && value <= "2100-12-31").optional().parse(params.get("date") || undefined);
     const period = z.enum(["day", "week", "month", "quarter", "year"]).parse(params.get("period") || "month");

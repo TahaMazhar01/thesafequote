@@ -16,5 +16,5 @@ export function LeadDownload({ filter, disabled }: { filter: {search:string;stat
     }catch(error){notify({title:"Download unavailable",message:error instanceof Error?error.message:"Please try again."});}
     finally{setBusy(false);}
   }
-  return <div className="admin-export"><div><strong>Download filtered leads</strong><p>All matching rows · Up to 2,000 per file · Full field values</p></div><label>Format<select value={format} disabled={busy} onChange={event=>setFormat(event.target.value)}><option value="xlsx">Excel (.xlsx)</option><option value="csv">CSV (.csv)</option></select></label><button className="admin-button" disabled={disabled||busy} onClick={download}><Download size={18}/>{busy?"Preparing…":"Download leads"}</button></div>;
+  return <div className="admin-export"><div className="admin-tool-heading"><strong>Download filtered leads</strong><p>All matching rows · Up to 2,000 per file · Full field values</p></div><div className="admin-export-controls"><label>Format<select value={format} disabled={busy} onChange={event=>setFormat(event.target.value)}><option value="xlsx">Excel (.xlsx)</option><option value="csv">CSV (.csv)</option></select></label><button className="admin-button" disabled={disabled||busy} onClick={download}><Download size={18}/>{busy?"Preparing…":"Download leads"}</button></div></div>;
 }

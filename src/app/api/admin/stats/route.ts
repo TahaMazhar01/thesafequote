@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   try {
-    await requireAdmin(request.headers, false, "leads");
+    await requireAdmin(request.headers, "leads");
     const timezone = process.env.ADMIN_TIMEZONE || "Asia/Karachi";
     // Only scan this month / the last fourteen days, rather than the full history.
     const result = await getPool().query(`WITH bounds AS (

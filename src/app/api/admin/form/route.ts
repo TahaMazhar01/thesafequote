@@ -6,13 +6,13 @@ import { clearFormCache, getPublishedForm } from "@/lib/server/form-store";
 import { checkOrigin, failure, HttpError, json, readJson } from "@/lib/server/http";
 export const runtime = "nodejs";
 export async function GET(request: Request) {
-  try { await requireAdmin(request.headers, false, "leads"); return json(await getPublishedForm(true)); }
+  try { await requireAdmin(request.headers, "leads"); return json(await getPublishedForm(true)); }
   catch (error) { return failure(error); }
 }
 export async function PUT(request: Request) {
   try {
     checkOrigin(request);
-    const admin = await requireAdmin(request.headers, false, "leads");
+    const admin = await requireAdmin(request.headers, "leads");
     const body = z.object({ version: z.number().int().positive(), fields: fieldsSchema }).strict().parse(await readJson(request));
     const version = await transaction(async client => {
       const current = await client.query("SELECT version_id FROM fa_form_current WHERE id = 1 FOR UPDATE");

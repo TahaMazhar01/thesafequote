@@ -7,7 +7,7 @@ import { checkOrigin, readJson, failure, HttpError, json } from "@/lib/server/ht
 export const runtime = "nodejs";
 export async function GET(request: Request) {
   try {
-    await requireAdmin(request.headers, false, "leads");
+    await requireAdmin(request.headers, "leads");
     const params = new URL(request.url).searchParams;
     const limit = z.coerce.number().int().min(1).max(50).parse(params.get("limit") || 25);
     const {where,values,timezone}=leadFilter(params);
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
 export async function POST(request:Request) {
   try {
     checkOrigin(request);
-    await requireAdmin(request.headers,false,"leads");
+    await requireAdmin(request.headers, "leads");
     const body=z.object({search:z.string().max(254),status:z.string().max(20),archived:z.enum(["true","false"]),deleted:z.enum(["true","false"]),range:z.enum(["all","today","yesterday","custom","time"]),from:z.string().max(40),to:z.string().max(40),cursor:z.string().max(1000)}).strict().parse(await readJson(request,4096));
     const url=new URL(request.url);url.search=new URLSearchParams(body).toString();
     return GET(new Request(url,{headers:request.headers}));

@@ -8,7 +8,7 @@ import { requireAdmin } from "@/lib/server/auth";
 import { checkOrigin, failure, HttpError, json } from "@/lib/server/http";
 export const runtime="nodejs";
 export async function POST(request:Request){try{
- checkOrigin(request);const admin=await requireAdmin(request.headers, false, "editor");await consumeLimit(`upload:${admin.id}`,10,3600);
+ checkOrigin(request);const admin=await requireAdmin(request.headers, "editor");await consumeLimit(`upload:${admin.id}`,10,3600);
  if(!["image/jpeg","image/png","image/webp"].includes(request.headers.get("content-type")||""))throw new HttpError(415,"Choose a JPG or PNG or WebP image.");
  const reader=request.body?.getReader();if(!reader)throw new HttpError(400,"Choose an image.");
  const chunks:Uint8Array[]=[];let size=0;
