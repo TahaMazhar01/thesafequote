@@ -1,0 +1,12 @@
+{
+  "license": "CC0 1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "processing": "Resized to a maximum width of 1280 pixels and converted to WebP",
+  "images": [
+    { "file": "notebook.webp", "author": "Thomas Martinsen", "source": "https://commons.wikimedia.org/wiki/File:Pen_on_a_notebook_(Unsplash).jpg" },
+    { "file": "home.webp", "author": "Gus Ruballo", "source": "https://commons.wikimedia.org/wiki/File:Cozy_white_house_(Unsplash).jpg" },
+    { "file": "coffee.webp", "author": "rawpixel.com", "source": "https://commons.wikimedia.org/wiki/File:Blue_coffee_cup_(Unsplash).jpg" },
+    { "file": "flowers.webp", "author": "Alexandra Gorn", "source": "https://commons.wikimedia.org/wiki/File:Flowers_1_(Unsplash).jpg" },
+    { "file": "path.webp", "author": "Alex Holyoake", "source": "https://commons.wikimedia.org/wiki/File:Forest_path_in_Scotland_(Unsplash).jpg" }
+  ]
+}

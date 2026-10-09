@@ -1,0 +1,11 @@
+# Example for a single Linux VPS. Set DOMAIN in Caddy's service environment.
+# The Node process listens only on 127.0.0.1:3000.
+{$DOMAIN} {
+    request_body {
+        max_size 6MB
+    }
+    reverse_proxy 127.0.0.1:3000 {
+        header_up X-Real-IP {remote_host}
+    }
+    # Avoid access logs containing query strings or private form data.
+}

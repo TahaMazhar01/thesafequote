@@ -10,3 +10,8 @@ next-env.d.ts
 lighthouse-*
 safe1
 safe2
+
+.next-*/
+
+# Private audit reports stay on the workstation.
+docs/security/

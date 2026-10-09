@@ -1,0 +1,32 @@
+/* Readable supporting text across the public website. */
+:root { --muted:#405e68; --eyebrow-size:14px; --eyebrow-tracking:1.2px; --eyebrow-color:#315965; }
+body { font-weight:500; }
+.desktop-nav a { font-size:15px;font-weight:750;color:#244853; }
+.desktop-nav a.active,.desktop-nav a:hover { color:#135c6a; }
+.desktop-nav a::after { height:3px; }
+.mobile-nav a { font-weight:700;color:#244853; }
+.faq-filters button { font-size:14px;font-weight:700;color:#294e5c;border-color:#9bb5c2;background:#fff;padding:11px 18px; }
+.faq-filters button:hover { background:#e7f0f5;border-color:#386a7b; }
+.faq-filters button.active,.faq-filters button[aria-pressed=true] { color:#fff;background:#215e6d;border-color:#215e6d;box-shadow:0 3px 8px #173e4920; }
+.faq-answer,.plan-card>p,.process-step p,.benefit-card p,.blog-card p { font-size:16px;line-height:1.8; }
+.section-footnote,.hero-assurance,.small-reassurance,.form-reassurance,.form-preview-note { font-size:13px;color:#425f68;font-weight:600; }
+.plan-card li,.trust-item p,.floating-note div>span { font-size:13px;font-weight:500; }
+.hero-bottom { color:#425f68;font-size:12px; }
+.field label { font-size:14px;font-weight:700; }
+.field .optional { font-size:13px;color:#526b75;font-weight:500; }
+.field input,.field select,.field textarea { font-size:15px;font-weight:500; }
+.field input::placeholder,.field textarea::placeholder { color:#536d78;opacity:1; }
+.quote-card .consent,.consent { font-size:13px;color:#405964;line-height:1.75; }
+.quote-layout .quote-benefits p,.quote-layout .quote-help p,.quote-layout .contact-info p { font-size:14px;color:#edf5f7; }
+.blog-card .eyebrow { font-size:12px; }.blog-byline,.blog-cover figcaption,.blog-prose figcaption { font-size:14px;color:#46616b; }
+@media(min-width:761px) and (max-width:1100px) { .desktop-nav { gap:18px; }.desktop-nav a { font-size:14px; }.header-inner { gap:20px; } }
+@media(max-width:600px) { .faq-filters { gap:8px; }.faq-filters button { font-size:13px;padding:10px 14px; } }
+
+/* Section labels use size and spacing for hierarchy rather than heavy weight. */
+.eyebrow,.home-page .eyebrow,.quote-layout .eyebrow,.care-copy .eyebrow,.closing-cta .eyebrow,.blog-card .eyebrow,
+.hero-kicker,.hero-label,.photo-plan-eyebrow,.plan-tag,.form-kicker,.legal-number {
+  font-size:var(--eyebrow-size);font-weight:600;letter-spacing:var(--eyebrow-tracking);line-height:1.6;color:var(--eyebrow-color);
+}
+.eyebrow-light,.care-copy .eyebrow,.closing-cta .eyebrow,.quote-layout .eyebrow { color:#e3eff2; }
+.eyebrow>span,.hero-brand-dot { width:6px;height:6px;flex-shrink:0; }
+@media(max-width:760px) { :root { --eyebrow-size:13px; --eyebrow-tracking:1px; } }

@@ -100,3 +100,10 @@
   .quote-layout .quote-card { padding: 22px 18px; }
   .quote-card .form-grid { grid-template-columns: 1fr; gap: 12px; }
 }
+.dynamic-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.dynamic-fieldset:disabled { opacity: .65; }
+.form-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.field-error { color: #a52929; display: block; font-size: 12px; margin-top: 5px; }
+.form-status.form-error { background: #fff3f0; border-color: #e6b9ae; }
+.dynamic-checkbox { display: flex; align-items: center; gap: 10px; }
+.field .dynamic-checkbox input { width: 18px; height: 18px; min-height: 18px; }

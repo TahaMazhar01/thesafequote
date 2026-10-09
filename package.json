@@ -7,23 +7,61 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:local": "node scripts/local-db.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/migrate.ts",
+    "blog:seed": "node --env-file-if-exists=.env.local --import tsx scripts/seed-blog.ts",
+    "test:blog": "node --env-file-if-exists=.env.local --import tsx --test tests/blog.test.ts",
+    "admin:create": "node --env-file-if-exists=.env.local --import tsx scripts/create-admin.ts",
+    "test:backend": "node --env-file-if-exists=.env.local --import tsx --test tests/backend.test.ts",
+    "test:lead-actions": "node --env-file-if-exists=.env.local --import tsx --test tests/lead-actions.test.ts",
+    "security:production-check": "node --env-file-if-exists=.env.local scripts/production-check.mjs",
+    "security:maintenance": "node --env-file-if-exists=.env.local scripts/security-maintenance.mjs",
+    "prestart": "npm run security:production-check -- --allow-enrollment",
+    "test:security": "node --env-file-if-exists=.env.local --import tsx tests/security-hardening.ts",
+    "test:export": "node --import tsx --test tests/lead-export.test.ts",
+    "verify:deployment": "node scripts/verify-deployment.mjs"
   },
   "dependencies": {
     "@fontsource/dm-serif-display": "^5.3.0",
     "@fontsource/manrope": "^5.3.0",
     "@fontsource/space-grotesk": "^5.3.0",
+    "@tiptap/extension-image": "^3.31.4",
+    "@tiptap/extension-placeholder": "^3.31.4",
+    "@tiptap/extension-table": "^3.31.4",
+    "@tiptap/extension-text-align": "^3.31.4",
+    "@tiptap/extension-text-style": "^3.31.4",
+    "@tiptap/pm": "^3.31.4",
+    "@tiptap/react": "^3.31.4",
+    "@tiptap/starter-kit": "^3.31.4",
+    "better-auth": "^1.7.7",
+    "exceljs": "^4.4.0",
     "lucide-react": "^1.52.0",
     "next": "^16.4.0",
+    "pg": "^8.23.1",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "embedded-postgres": "^18.4.0-beta.17",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.0",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "11.1.1"
+    }
+  },
+  "engines": {
+    "node": ">=24 <25"
   }
 }

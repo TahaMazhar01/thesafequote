@@ -1,0 +1,23 @@
+[Unit]
+Description=The Safe Quote web application
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=safequote
+WorkingDirectory=/srv/safequote/current
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/safequote/runtime.env
+ExecStart=/usr/bin/npm run start
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/safequote/current/.next /var/lib/safequote/blog-media
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+import { randomBytes, scrypt, timingSafeEqual } from "node:crypto";
+const derive=(password:string,salt:string,N:number,r:number,p:number)=>new Promise<Buffer>((resolve,reject)=>scrypt(password.normalize("NFKC"),salt,64,{N,r,p,maxmem:256*1024*1024},(error,key)=>error?reject(error):resolve(key)));
+export async function hashAdminPassword(password:string){const salt=randomBytes(16).toString("hex");const key=await derive(password,salt,131072,8,1);return `scrypt-v2:${salt}:${key.toString("hex")}`;}
+export async function verifyAdminPassword({hash,password}:{hash:string;password:string}){const modern=hash.startsWith("scrypt-v2:");const parts=hash.split(":");const salt=parts[modern?1:0],stored=parts[modern?2:1];if(!salt||!stored||!/^[a-f0-9]{128}$/i.test(stored))return false;const key=await derive(password,salt,modern?131072:16384,modern?8:16,1);return timingSafeEqual(key,Buffer.from(stored,"hex"));}

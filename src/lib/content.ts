@@ -3,6 +3,7 @@ export const navigation = [
   { href: "/plans", label: "Our plans" },
   { href: "/why-choose-us", label: "Why choose us" },
   { href: "/faq", label: "FAQs" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 

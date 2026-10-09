@@ -1,3 +1,4 @@
+import { siteOrigin } from "@/lib/site-url";
 import type { Metadata } from "next";
 import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/500.css";
@@ -16,11 +17,14 @@ import "./carriers.css";
 import "./quote.css";
 import "./details.css";
 import "./motion.css";
+import "./blog.css";
+import "./readability.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { SiteChrome } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://thesafequote.com"),
+  metadataBase: new URL(siteOrigin()),
   title: { default: "TheSafeQuote | A thoughtful plan for the people you love", template: "%s | TheSafeQuote" },
   description: "Explore final expense insurance with clear guidance and no-obligation quotes. A little planning for your family. A lot of peace of mind.",
   verification: {
@@ -40,5 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth"><body><a className="skip-link" href="#main-content">Skip to main content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
+  return <html lang="en" data-scroll-behavior="smooth"><body><a className="skip-link" href="#main-content">Skip to main content</a><SiteChrome header={<Header />} footer={<Footer />}>{children}</SiteChrome></body></html>;
 }
