@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { plans } from "@/lib/content";
 import { Icon } from "./icon";
 import { NumberBadge } from "./number-badge";
+import { Reveal } from "./reveal";
 
 const photos = [
   { src: "/images/family-generations-hd.png", alt: "Three generations of a family laughing together", caption: "Care that carries on.", position: "50% 32%" },
@@ -18,26 +19,11 @@ function PhotoPlan({ index }: { index: number }) {
   const photo = photos[index];
   const id = useId();
   const [open, setOpen] = useState(false);
-  const card = useRef<HTMLElement>(null);
   const photoButton = useRef<HTMLButtonElement>(null);
   const backButton = useRef<HTMLButtonElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const hasInteracted = useRef(false);
-  const hasRevealed = useRef(false);
   const returnFocusToPhoto = useRef(false);
 
-  function clearTimer() {
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = null;
-  }
-
-  function takeControl() {
-    hasInteracted.current = true;
-    clearTimer();
-  }
-
   function toggle(show: boolean) {
-    takeControl();
     returnFocusToPhoto.current = !show;
     setOpen(show);
     requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -45,35 +31,8 @@ function PhotoPlan({ index }: { index: number }) {
     }));
   }
 
-  useEffect(() => {
-    const element = card.current;
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!element) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      clearTimer();
-      if (entry.isIntersecting && !motion.matches && !hasInteracted.current && !hasRevealed.current) {
-        timer.current = setTimeout(() => {
-          // Opening is one-shot, so the content stays still while it is read.
-          hasRevealed.current = true;
-          setOpen(true);
-        }, 2000);
-      }
-    }, { threshold: 0.65 });
-    const cancelWhenHidden = () => { if (document.hidden) clearTimer(); };
-    const cancelForMotion = () => { if (motion.matches) clearTimer(); };
-    observer.observe(element);
-    document.addEventListener("visibilitychange", cancelWhenHidden);
-    motion.addEventListener("change", cancelForMotion);
-    return () => {
-      clearTimer();
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", cancelWhenHidden);
-      motion.removeEventListener("change", cancelForMotion);
-    };
-  }, []);
-
   return (
-    <article ref={card} className={`photo-plan ${open ? "is-open" : ""} ${index % 2 ? "slide-right" : "slide-left"}`} aria-label={plan.name} onFocusCapture={takeControl} onPointerDown={takeControl}>
+    <article className={`photo-plan ${open ? "is-open" : ""} ${index % 2 ? "slide-right" : "slide-left"}`} aria-label={plan.name}>
       <div className="photo-plan-details" id={`${id}-details`} inert={!open} aria-hidden={!open}>
         <div className="photo-plan-detail-top"><NumberBadge number={index + 1} compact /><button ref={backButton} type="button" onClick={() => toggle(false)} aria-label={`Show ${plan.name} photo`}>View photo <Icon name="close" size={15} /></button></div>
         <span className="photo-plan-eyebrow">{plan.tag}</span>
@@ -105,6 +64,6 @@ function PhotoPlan({ index }: { index: number }) {
 
 export function PlanCards() {
   return <div className="photo-plans">
-    <div className="photo-plan-grid">{plans.map((plan, index) => <PhotoPlan key={plan.id} index={index} />)}</div>
+    <div className="photo-plan-grid">{plans.map((plan, index) => <Reveal key={plan.id} delay={index * 80}><PhotoPlan index={index} /></Reveal>)}</div>
   </div>;
 }

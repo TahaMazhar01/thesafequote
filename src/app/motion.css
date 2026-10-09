@@ -1,0 +1,733 @@
+/* ==========================================================================
+   High-Performance Motion & Micro-Interactions System
+   Built exclusively with GPU-accelerated properties (transform, opacity)
+   Zero layout shifts (CLS: 0), 60fps/120fps smooth compositor execution
+   ========================================================================== */
+
+:root {
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-spring: cubic-bezier(0.34, 1.35, 0.64, 1);
+  --motion-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --duration-fast: 0.2s;
+  --duration-medium: 0.35s;
+  --duration-slow: 0.65s;
+}
+
+/* --- Gentle & Easy Scroll Reveal System --- */
+.reveal {
+  transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1), transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
+/* --- Hero Choreography & Micro-Interactions --- */
+.hero-brand-dot {
+  position: relative;
+  animation: hero-dot-pulse 3s infinite ease-in-out;
+}
+@keyframes hero-dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(177, 134, 39, 0.45);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(177, 134, 39, 0);
+  }
+}
+
+.hero-promise { animation: calm-entry 0.7s 0.05s var(--motion-ease) both; }
+.hero-options-count {
+  animation: calm-entry 0.7s 0.1s var(--motion-ease) both;
+  transition: transform 0.35s var(--motion-ease);
+}
+.hero-options-count:hover {
+  transform: translateY(-4px);
+}
+
+/* --- Venetian Blinds Cascading Dropdown for 03 Counter (Slow & Graceful) --- */
+.hero-count-number {
+  display: block;
+  transform-origin: top center;
+  animation: blinds-cascade-reveal 1.85s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.4s var(--motion-ease), filter 0.4s ease;
+  will-change: clip-path, background-position, transform;
+}
+
+@keyframes blinds-cascade-reveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    background-position: 0 -120px;
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0% 0);
+    background-position: 0 0;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover Shutter Ripple Wave */
+.hero-options-count:hover .hero-count-number {
+  filter: drop-shadow(0 8px 18px rgba(114, 146, 155, 0.45));
+  animation: blinds-hover-wave 0.75s cubic-bezier(0.34, 1.35, 0.64, 1) both;
+}
+
+@keyframes blinds-hover-wave {
+  0% {
+    background-position: 0 0;
+    transform: translateY(0);
+  }
+  50% {
+    background-position: 0 12px;
+    transform: translateY(-3px) scale(1.02);
+  }
+  100% {
+    background-position: 0 0;
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* Original smooth rise animations for THE SAFE and Hero Family Picture are preserved from editorial.css */
+
+/* --- Hero "QUOTE" Wordmark Right-Side Reveal --- */
+.hero-name-end {
+  animation: quote-reveal-right 0.95s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes quote-reveal-right {
+  0% {
+    opacity: 0;
+    transform: translateX(85px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes calm-entry {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-promise > a {
+  position: relative;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s var(--motion-ease);
+}
+.hero-promise > a:hover {
+  transform: translateX(3px);
+  border-color: #dfba50;
+  color: var(--teal);
+}
+.hero-promise > a svg {
+  transition: transform 0.3s var(--motion-spring);
+}
+.hero-promise > a:hover svg {
+  transform: translateX(5px);
+}
+
+/* --- Header & Navigation Motion --- */
+.site-header {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.desktop-nav a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 22px;
+  width: 100%;
+  height: 2px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--motion-ease);
+}
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- Premium Buttons & Links with Light-Sheen --- */
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.25s ease, transform 0.25s var(--motion-ease), box-shadow 0.25s ease;
+}
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  transform: skewX(-20deg);
+  transition: transform 0.75s ease;
+  pointer-events: none;
+}
+.button:hover::after {
+  transform: translateX(380%) skewX(-20deg);
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(33, 103, 116, 0.3);
+}
+.button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px -4px rgba(33, 103, 116, 0.2);
+}
+.button:focus-visible svg,
+.text-link:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.text-link {
+  transition: color 0.2s ease, transform 0.2s var(--motion-ease);
+}
+.text-link:hover {
+  transform: translateX(3px);
+}
+.text-link svg {
+  transition: transform 0.25s var(--motion-spring);
+}
+.text-link:hover svg {
+  transform: translateX(5px);
+}
+
+/* --- Carrier Marquee Polish --- */
+.carrier-logo img {
+  transition: transform 0.35s var(--motion-ease), filter 0.35s ease, opacity 0.35s ease;
+  opacity: 0.8;
+  filter: grayscale(20%);
+}
+.carrier-item:hover .carrier-logo img {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* --- Plan Cards Micro-Interactions --- */
+.photo-plan-grid > .reveal {
+  min-width: 0;
+  display: flex;
+}
+.photo-plan-grid > .reveal > .photo-plan {
+  width: 100%;
+}
+.photo-plan {
+  transition: transform 0.4s var(--motion-ease), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.photo-plan-cover {
+  transition-duration: 0.65s;
+}
+.photo-plan-cover > img {
+  transition: transform 0.8s var(--motion-ease);
+}
+.photo-plan-arrow {
+  transition: background-color 0.25s ease, transform 0.25s var(--motion-spring);
+}
+.photo-plan-arrow svg {
+  transition: transform 0.25s var(--motion-spring);
+}
+.photo-plan-badge {
+  transition: transform 0.3s var(--motion-ease), box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .photo-plan:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 48px -20px rgba(24, 59, 64, 0.22), 0 0 0 1px rgba(38, 119, 129, 0.2);
+  }
+  .photo-plan:hover .photo-plan-cover > img {
+    transform: scale(1.045);
+  }
+  .photo-plan:hover .photo-plan-badge {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(24, 59, 64, 0.14);
+  }
+  .photo-plan:hover .photo-plan-arrow {
+    background: rgba(255, 255, 255, 0.22);
+    transform: scale(1.08);
+  }
+  .photo-plan:hover .photo-plan-arrow svg {
+    transform: translateX(3px);
+  }
+  .photo-plan-cover:focus-visible .photo-plan-arrow svg {
+    transform: translateX(3px);
+  }
+}
+
+/* --- Care Section & Benefit Items --- */
+.coverage-list > div {
+  transition: transform 0.25s var(--motion-ease), background-color 0.25s ease;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-inline: -12px;
+}
+.coverage-list > div:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(4px);
+}
+.coverage-list > div span {
+  transition: transform 0.3s var(--motion-spring), background-color 0.25s ease, color 0.25s ease;
+}
+.coverage-list > div:hover span {
+  transform: scale(1.15) rotate(4deg);
+  background: #dfba50;
+  color: #174e59;
+}
+.care-photo-label {
+  transition: transform 0.35s var(--motion-ease), box-shadow 0.35s ease;
+}
+.care-visual:hover .care-photo-label {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(24, 59, 64, 0.25);
+}
+
+/* --- Process Step Cards --- */
+.process-step {
+  transition: transform 0.35s var(--motion-ease);
+}
+.process-step:hover {
+  transform: translateY(-5px);
+}
+.process-step:hover [role="img"].badge,
+.process-step:hover [class*="badge"] {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 24px -6px rgba(19, 62, 89, 0.42);
+}
+.process-step:hover .step-icon {
+  transform: scale(1.12) rotate(-6deg);
+  color: var(--teal);
+}
+.step-icon {
+  transition: transform 0.3s var(--motion-spring), color 0.2s ease;
+}
+[class*="badge"] {
+  transition: transform 0.3s var(--motion-ease), box-shadow 0.3s ease;
+}
+
+/* --- Quote Form Polish --- */
+.quote-layout.container {
+  transition: box-shadow 0.4s ease;
+}
+.quote-layout.container:focus-within {
+  box-shadow: 0 24px 60px rgba(24, 59, 64, 0.14);
+}
+.field input, .field select, .field textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--motion-ease);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  transform: translateY(-1px);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(33, 103, 116, 0.14), 0 4px 12px rgba(24, 59, 64, 0.05);
+}
+.quote-benefits > div {
+  transition: transform 0.25s var(--motion-ease);
+}
+.quote-benefits > div:hover {
+  transform: translateX(4px);
+}
+.quote-benefits > div > span {
+  transition: transform 0.25s var(--motion-spring);
+}
+.quote-benefits > div:hover > span {
+  transform: scale(1.18);
+}
+
+/* --- FAQ Search & Micro-Motions --- */
+.faq-search {
+  transition: transform 0.3s var(--motion-ease), border-color 0.25s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+.faq-search:hover {
+  transform: translateY(-1px);
+  border-color: #a3bac1;
+  box-shadow: 0 6px 18px rgba(33, 103, 116, 0.08);
+}
+.faq-search:focus-within {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(33, 103, 116, 0.14), 0 8px 24px rgba(33, 103, 116, 0.09);
+}
+.faq-search svg {
+  transition: transform 0.35s var(--motion-spring), color 0.25s ease;
+}
+.faq-search:hover svg {
+  transform: scale(1.08);
+}
+.faq-search:focus-within svg {
+  transform: scale(1.16) rotate(-7deg);
+  color: var(--teal);
+}
+
+/* --- FAQ Filter Pills --- */
+.faq-filters button {
+  transition: transform 0.25s var(--motion-spring), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+.faq-filters button:hover:not(.selected) {
+  transform: translateY(-2px) scale(1.02);
+  background: var(--mint);
+  color: var(--teal);
+  box-shadow: 0 4px 12px rgba(24, 59, 64, 0.07);
+}
+.faq-filters button:active {
+  transform: scale(0.96);
+}
+.faq-filters button.selected {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(33, 103, 116, 0.28);
+}
+
+/* --- FAQ Accordion Items --- */
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.25s ease;
+}
+.faq-item > h3 { margin: 0; }
+.faq-trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 23px;
+  padding: 23px 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: var(--ink);
+  font: 700 15px/1.65 'Manrope', sans-serif;
+  letter-spacing: normal;
+  transition: color 0.2s ease, transform 0.25s var(--motion-ease);
+}
+.faq-trigger:hover {
+  color: var(--teal);
+  transform: translateX(4px);
+}
+.faq-trigger > span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: var(--teal);
+  transition: background-color 0.25s ease, transform 0.35s var(--motion-spring);
+}
+.faq-trigger:hover > span {
+  background-color: rgba(33, 103, 116, 0.09);
+  transform: scale(1.12);
+}
+.faq-trigger svg {
+  transition: transform 0.38s var(--motion-spring);
+}
+.faq-trigger[aria-expanded='true'] {
+  color: var(--teal);
+}
+.faq-trigger[aria-expanded='true'] > span {
+  background-color: rgba(33, 103, 116, 0.12);
+}
+.faq-trigger[aria-expanded='true'] svg {
+  transform: rotate(45deg) scale(1.12);
+}
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.34s var(--motion-ease), opacity 0.25s ease, visibility 0.34s;
+}
+.faq-panel[data-open='true'] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+.faq-panel > div {
+  overflow: hidden;
+  min-height: 0;
+}
+.faq-panel[data-open='true'] .faq-answer {
+  animation: faq-answer-glide 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes faq-answer-glide {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- FAQ Sticky Help Card Sidebar & Micro-Interactions --- */
+.help-card {
+  animation: help-card-entry 1.05s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.4s var(--motion-ease), box-shadow 0.4s ease, border-color 0.3s ease;
+  will-change: transform, box-shadow, opacity;
+}
+.help-card:hover {
+  transform: translateY(-4px);
+  border-color: #b7cbce;
+  box-shadow: 0 22px 45px -18px rgba(33, 79, 90, 0.14), 0 0 0 1px rgba(33, 103, 116, 0.08);
+}
+.help-card .icon-tile {
+  transition: transform 0.35s var(--motion-spring), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  animation: help-tile-bob 4s ease-in-out infinite;
+  will-change: transform;
+}
+.help-card:hover .icon-tile {
+  transform: translateY(-3px) scale(1.12) rotate(-8deg);
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 8px 18px rgba(33, 103, 116, 0.3);
+}
+.help-card .button {
+  transition: transform 0.25s var(--motion-ease), box-shadow 0.25s ease;
+}
+.help-card .button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(33, 103, 116, 0.38);
+}
+.help-card .button svg {
+  transition: transform 0.3s var(--motion-spring);
+}
+.help-card .button:hover svg {
+  transform: translateX(4px);
+}
+
+@keyframes help-card-entry {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes help-tile-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+
+/* --- FAQ Search No Results State --- */
+.no-results {
+  animation: no-results-appear 0.4s var(--motion-spring) both;
+}
+.no-results svg {
+  animation: help-tile-bob 3.2s ease-in-out infinite;
+}
+@keyframes no-results-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Contact Circular Orbits: Bubble Pop + Directional Slide --- */
+.contact-orbit-main {
+  animation: orbit-bubble-right 1.1s 0.12s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+.contact-orbit-detail {
+  animation: orbit-bubble-left 1.1s 0.3s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes orbit-bubble-right {
+  0% {
+    opacity: 0;
+    transform: translateX(70px) scale(0);
+    box-shadow: 0 0 0 0 rgba(23, 59, 64, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-4px) scale(1.08);
+    box-shadow: 0 28px 50px -15px rgba(23, 59, 64, 0.38);
+  }
+  80% {
+    transform: translateX(2px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    box-shadow: 0 16px 30px -23px #173b4066;
+  }
+}
+
+@keyframes orbit-bubble-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) scale(0);
+    box-shadow: 0 0 0 0 rgba(23, 59, 64, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(4px) scale(1.12);
+    box-shadow: 0 28px 50px -15px rgba(23, 59, 64, 0.38);
+  }
+  80% {
+    transform: translateX(-2px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    box-shadow: 0 16px 30px -23px #173b4066;
+  }
+}
+
+/* Hover: Organic Floating Bubble Wobble */
+@media (hover: hover) and (pointer: fine) {
+  .contact-orbit {
+    transition: transform 0.45s cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 0.4s ease;
+  }
+  .contact-orbit-main:hover {
+    z-index: 3;
+    box-shadow: 0 30px 60px -15px rgba(23, 59, 64, 0.42);
+    animation: circle-bubble-wobble-1 2.8s infinite ease-in-out;
+  }
+  .contact-orbit-detail:hover {
+    z-index: 4;
+    box-shadow: 0 30px 60px -15px rgba(23, 59, 64, 0.42);
+    animation: circle-bubble-wobble-2 2.8s infinite ease-in-out;
+  }
+  .contact-orbit img {
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .contact-orbit:hover img {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes circle-bubble-wobble-1 {
+  0%, 100% {
+    transform: scale(1.035) translateY(0);
+  }
+  30% {
+    transform: scale(1.06) translateY(-5px);
+  }
+  65% {
+    transform: scale(1.025) translateY(2px);
+  }
+  85% {
+    transform: scale(1.045) translateY(-2px);
+  }
+}
+
+@keyframes circle-bubble-wobble-2 {
+  0%, 100% {
+    transform: scale(1.05) translateY(0);
+  }
+  35% {
+    transform: scale(1.08) translateY(-4px);
+  }
+  70% {
+    transform: scale(1.035) translateY(2px);
+  }
+  88% {
+    transform: scale(1.065) translateY(-1px);
+  }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 760px) {
+  .reveal-pending { transform: translateY(12px); }
+  .reveal { transition-duration: 0.4s; transition-delay: 0ms !important; }
+  .faq-trigger { padding-block: 21px; font-size: 14px; gap: 20px; }
+  @keyframes calm-entry {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes quote-reveal-right {
+    0% {
+      opacity: 0;
+      transform: translateX(45px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes orbit-bubble-right {
+    0% {
+      opacity: 0;
+      transform: translateX(45px) scale(0);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(-3px) scale(1.08);
+    }
+    80% {
+      transform: translateX(1px) scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+  @keyframes orbit-bubble-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-40px) scale(0);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(3px) scale(1.10);
+    }
+    80% {
+      transform: translateX(-1px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+}
+
+/* --- Accessibility & Reduced Motion Strict Compliance --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+  .photo-plan:hover, .button:active, .button:hover { transform: none !important; }
+  .photo-plan-cover:hover > img, .photo-plan-cover:hover .photo-plan-arrow svg { transform: none !important; }
+}

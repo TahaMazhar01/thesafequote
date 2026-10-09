@@ -7,3 +7,6 @@ out/
 next-env.d.ts
 *.log
 .local/
+lighthouse-*
+safe1
+safe2

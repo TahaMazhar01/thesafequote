@@ -15,6 +15,7 @@ import "./mission.css";
 import "./carriers.css";
 import "./quote.css";
 import "./details.css";
+import "./motion.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 

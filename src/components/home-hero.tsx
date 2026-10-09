@@ -12,7 +12,7 @@ export function HomeHero() {
             <p>A little planning today.<br />A little more peace of mind tomorrow.</p>
             <Link href="#get-quote">Find my free quote <Icon name="arrow" size={19} /></Link>
           </div>
-          <Link className="hero-options-count" href="#coverage-options" aria-label="Explore our three coverage options">
+          <Link className="hero-options-count" href="#coverage-options" aria-label="03 Paths to protection: explore our three coverage options">
             <span className="hero-count-number" aria-hidden="true">03</span>
             <span className="hero-count-label">Paths to protection</span>
           </Link>
@@ -25,7 +25,7 @@ export function HomeHero() {
           </h1>
           <figure className="hero-family-figure">
             <div className="hero-portrait-frame">
-              <Image src="/images/hero-family-cutout.png" alt="A smiling mother and father with their two children on their shoulders" fill priority sizes="(max-width: 760px) 90vw, (max-width: 1360px) 70vw, 880px" />
+              <Image src="/images/hero-family-cutout.png" alt="A smiling mother and father with their two children on their shoulders" fill priority fetchPriority="high" sizes="(max-width: 760px) 90vw, (max-width: 1360px) 70vw, 880px" />
             </div>
           </figure>
         </div>

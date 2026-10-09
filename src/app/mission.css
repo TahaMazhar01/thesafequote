@@ -20,19 +20,120 @@
 .family-mission-showcase { min-width: 0; }
 .mission-gallery { margin: 0; }
 .mission-diamonds { position: relative; width: 100%; aspect-ratio: 1 / 1; }
-.mission-diamond { position: absolute; transform: rotate(45deg); overflow: hidden; background: #e1edef; isolation: isolate; border-radius: 30px; box-shadow: 0 20px 45px -30px #21596440; }
+.mission-diamond {
+  position: absolute;
+  transform: rotate(45deg);
+  overflow: hidden;
+  background: #e1edef;
+  isolation: isolate;
+  border-radius: 30px;
+  box-shadow: 0 20px 45px -30px #21596440;
+  will-change: transform, opacity;
+}
+
+/* --- Bubble Pop Reveal Animations --- */
+.family-mission-showcase:not(.reveal-pending) .diamond-top {
+  animation: bubble-pop 0.9s 0.12s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+.family-mission-showcase:not(.reveal-pending) .diamond-main {
+  animation: bubble-pop 1.05s 0.32s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+.family-mission-showcase:not(.reveal-pending) .diamond-bottom {
+  animation: bubble-pop 0.9s 0.52s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+.family-mission-showcase:not(.reveal-pending) .outline-top {
+  animation: bubble-pop-outline 0.8s 0.22s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+.family-mission-showcase:not(.reveal-pending) .outline-bottom {
+  animation: bubble-pop-outline 0.8s 0.62s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+
+.reveal-pending .mission-diamond,
+.reveal-pending .diamond-outline {
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+}
+
+@keyframes bubble-pop {
+  0% {
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: rotate(45deg) scale(1.08);
+    opacity: 1;
+  }
+  80% {
+    transform: rotate(45deg) scale(0.96);
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bubble-pop-outline {
+  0% {
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+  }
+  65% {
+    transform: rotate(45deg) scale(1.18);
+    opacity: 0.9;
+  }
+  85% {
+    transform: rotate(45deg) scale(0.95);
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mission-diamond {
+    transition: transform 0.45s cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 0.4s ease;
+  }
+  .mission-diamond:hover {
+    z-index: 3;
+    box-shadow: 0 30px 60px -18px rgba(33, 89, 100, 0.42);
+    animation: bubble-hover-wobble 2.6s infinite ease-in-out;
+  }
+  .diamond-outline {
+    transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), border-color 0.3s ease;
+  }
+  .mission-diamonds:hover .diamond-outline {
+    transform: rotate(45deg) scale(1.12);
+  }
+}
+
+@keyframes bubble-hover-wobble {
+  0%, 100% {
+    transform: rotate(45deg) scale(1.045) translateY(0);
+  }
+  28% {
+    transform: rotate(46.4deg) scale(1.065) translateY(-4px);
+  }
+  64% {
+    transform: rotate(43.8deg) scale(1.04) translateY(2px);
+  }
+  85% {
+    transform: rotate(45.5deg) scale(1.055) translateY(-2px);
+  }
+}
+
 .diamond-image { position: absolute; inset: -21%; transform: rotate(-45deg); }
-.diamond-image img { object-fit: cover; transition: transform .6s; }
-.mission-diamond:hover .diamond-image img { transform: scale(1.035); }
+.diamond-image img { object-fit: cover; transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1); }
+.mission-diamond:hover .diamond-image img { transform: scale(1.048); }
 .diamond-top { width: 29%; aspect-ratio: 1; left: 7%; top: 11%; }
 .diamond-main { width: 53%; aspect-ratio: 1; left: 52%; top: 26%; border-radius: 38px; }
 .diamond-bottom { width: 29%; aspect-ratio: 1; left: 7%; top: 65%; }
 .diamond-top { background: #c1e5fa; }
 .diamond-top .diamond-image img { transform: translate(-4%,9%); }
-.diamond-top:hover .diamond-image img { transform: translate(-4%,9%) scale(1.035); }
+.diamond-top:hover .diamond-image img { transform: translate(-4%,9%) scale(1.048); }
 .diamond-main img { object-position: 50% 0%; }
 .diamond-bottom img { object-position: 50% 68%; }
-.diamond-outline { position: absolute; width: 34px; height: 34px; border: 1px solid #b6d2d8; border-radius: 7px; transform: rotate(45deg); }
+.diamond-outline { position: absolute; width: 34px; height: 34px; border: 1px solid #b6d2d8; border-radius: 7px; transform: rotate(45deg); will-change: transform, opacity; }
 .outline-top { left: 45%; top: 2%; }
 .outline-bottom { left: 45%; bottom: -2%; border-color: #d8c78d; }
 .mission-gallery figcaption { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 10px; color: #59777e; margin-top: 38px; line-height: 1.7; white-space: nowrap; }
@@ -83,5 +184,6 @@
   .mission-gallery figcaption > span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .mission-diamond, .diamond-outline { animation: none !important; transform: rotate(45deg) scale(1) !important; opacity: 1 !important; }
   .mission-diamond img { transition: none; }
 }

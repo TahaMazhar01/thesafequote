@@ -30,6 +30,13 @@
 .medicareLink > span { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: var(--surface-tint); transition: background .2s, color .2s; }
 .medicareLink:hover > span { color: white; background: var(--teal); }
 .cardWrap { display: flex; min-width: 0; }
+.medicareCard, .card { transition: transform .3s ease, box-shadow .3s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .medicareCard:hover, .card:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -24px #214f5a55; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .medicareCard:hover, .card:hover { transform: none; }
+}
 .card { display: flex; flex-direction: column; width: 100%; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: white; box-shadow: 0 16px 32px -27px #1c535340; }
 .supplemental .card { background: var(--surface-gradient); }
 .cardTop > :last-child { margin-left: auto; }
