@@ -114,3 +114,4 @@
 }
 @media(max-width:1000px) { .layout { gap: 30px; } .copy h1 { font-size: 37px; } .copy > p { font-size: 14px; } .visual figcaption { gap: 10px; padding-inline: 4px; } .visual strong { font-size: 12px; } }
 @media(max-width:760px) { .hero { padding: 23px 0 35px; } .hero .breadcrumb { margin-bottom: 24px; } .layout { grid-template-columns: 1fr; gap: 30px; } .copy { padding: 0; } .copy h1 { font-size: clamp(32px,8.6vw,43px); letter-spacing: -1.3px; } .copy > p { margin-top: 18px; } .actions { margin-top: 22px; gap: 20px; } .visual { width: 100%; max-width: 520px; justify-self: center; } .photo { aspect-ratio: 1.55; } .visual figcaption { padding: 14px 6px 6px; } }
+.copy,.actions{min-width:0}.copy h1,.visual figcaption{overflow-wrap:anywhere}

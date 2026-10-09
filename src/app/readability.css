@@ -30,3 +30,25 @@ body { font-weight:500; }
 .eyebrow-light,.care-copy .eyebrow,.closing-cta .eyebrow,.quote-layout .eyebrow { color:#e3eff2; }
 .eyebrow>span,.hero-brand-dot { width:6px;height:6px;flex-shrink:0; }
 @media(max-width:760px) { :root { --eyebrow-size:13px; --eyebrow-tracking:1px; } }
+/* Responsive content remains readable without hiding page overflow. */
+.field,.form-grid>*,.quote-layout>*,.contact-layout>*,.blog-grid>*{min-width:0}
+.field input,.field select,.field textarea{max-width:100%}
+.blog-prose,.blog-card h2,.blog-article h1,.legal-content{overflow-wrap:anywhere}
+.blog-prose img{height:auto}
+.comparison-scroll,.blog-table-scroll{max-width:100%;overscroll-behavior-x:contain}
+@media(max-width:960px){.mobile-nav{max-height:calc(100dvh - 110px);overscroll-behavior:contain}.menu-toggle{min-width:44px;min-height:44px;align-items:center;justify-content:center}}
+@media(max-width:760px){
+ .field input,.field select,.field textarea{font-size:16px}
+ .faq-filters button,.mobile-nav>a,.text-link{min-height:44px}
+ .button{max-width:100%;white-space:normal;text-align:center}
+ .blog-next{padding:22px}.blog-prose blockquote{padding:16px}.blog-cover figcaption{overflow-wrap:anywhere}
+ .home-page h2,.home-page .section-heading h2{font-size:clamp(30px,7vw,38px)}
+}
+@media(max-width:380px){
+ .hero-introduction{flex-wrap:wrap;gap:18px}.hero-promise{flex:1 1 100%}
+ .hero-options-count{flex-direction:row;align-items:center;gap:12px;text-align:left}.hero-count-number{font-size:48px}.hero-count-label{max-width:110px}
+ .hero-kicker{font-size:12px;letter-spacing:.8px}
+ .editorial-wordmark{left:0;right:0}.hero-name-main{font-size:24cqw}
+ .faq-filters button{flex:1 1 auto}
+}
+.mobile-nav>a.button{color:#fff}
