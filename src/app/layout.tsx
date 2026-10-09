@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://thesafequote.com"),
   title: { default: "TheSafeQuote | A thoughtful plan for the people you love", template: "%s | TheSafeQuote" },
   description: "Explore final expense insurance with clear guidance and no-obligation quotes. A little planning for your family. A lot of peace of mind.",
+  verification: {
+    google: "a_HSF_7gzrbrG8KR4AFHHymJSo4CzzFY8OYa690LMWs",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
