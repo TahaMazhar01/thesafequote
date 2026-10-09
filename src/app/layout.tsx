@@ -23,6 +23,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://thesafequote.com"),
   title: { default: "TheSafeQuote | A thoughtful plan for the people you love", template: "%s | TheSafeQuote" },
   description: "Explore final expense insurance with clear guidance and no-obligation quotes. A little planning for your family. A lot of peace of mind.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "64x64" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: { type: "website", locale: "en_US", siteName: "TheSafeQuote", images: [{ url: "/images/family-together.jpg", width: 1800, height: 1200, alt: "Family together in a meadow" }] },
 };
 

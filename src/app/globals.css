@@ -78,6 +78,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .brand-mark { color: var(--teal); display: flex; align-items: center; }
 .brand-safe { color: var(--teal); }
 .brand-dot { color: #c79a36; }
+.brand-logo-img { display: block; height: 48px; width: auto; max-width: 100%; object-fit: contain; transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1); }
+.brand:hover .brand-logo-img { transform: scale(1.02); }
+@media (max-width: 760px) { .brand-logo-img { height: 38px; } }
+@media (max-width: 390px) { .brand-logo-img { height: 34px; } }
 .desktop-nav { display: flex; gap: 29px; margin-left: auto; }
 .desktop-nav a { font-size: 13px; color: var(--muted); font-weight: 600; position: relative; padding: 30px 0; }
 .desktop-nav a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--teal); bottom: 22px; left: 0; transition: width .2s; }

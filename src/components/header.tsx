@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -7,7 +8,18 @@ import { navigation } from "@/lib/content";
 import { Icon } from "./icon";
 
 export function Brand({ inverse = false }: { inverse?: boolean }) {
-  return <Link href="/" className={`brand ${inverse ? "brand-inverse" : ""}`} aria-label="TheSafeQuote home"><span className="brand-mark"><Icon name="shield" size={27} /></span><span>the<span className="brand-safe">safe</span>quote<span className="brand-dot">.</span></span></Link>;
+  return (
+    <Link href="/" className={`brand ${inverse ? "brand-inverse" : ""}`} aria-label="The Safe Quote home">
+      <Image
+        src={inverse ? "/images/logo/logo-inverse.png" : "/images/logo/logo.png"}
+        alt="The Safe Quote"
+        width={180}
+        height={54}
+        priority
+        className="brand-logo-img"
+      />
+    </Link>
+  );
 }
 
 export function Header() {
